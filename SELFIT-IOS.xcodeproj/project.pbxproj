@@ -12,6 +12,11 @@
 		FAE1358C2A0E082F0004AFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1358B2A0E082F0004AFB4 /* Assets.xcassets */; };
 		FAE1358F2A0E082F0004AFB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE1358D2A0E082F0004AFB4 /* LaunchScreen.storyboard */; };
 		FAE135972A0E09B40004AFB4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135962A0E09B40004AFB4 /* MainViewController.swift */; };
+		FAE1359D2A0F22890004AFB4 /* WalktroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1359C2A0F22890004AFB4 /* WalktroughViewController.swift */; };
+		FAE135A62A114B900004AFB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FAE135A52A114B900004AFB4 /* SnapKit */; };
+		FAE135AE2A11E8C20004AFB4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135AD2A11E8C20004AFB4 /* HomeViewController.swift */; };
+		FAE135B22A11EAD30004AFB4 /* IntegralCF-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAE135B12A11EAD30004AFB4 /* IntegralCF-Bold.otf */; };
+		FAE135B42A11EC3B0004AFB4 /* IntegralCF-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAE135B32A11EC3B0004AFB4 /* IntegralCF-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,10 @@
 		FAE1358E2A0E082F0004AFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAE135902A0E082F0004AFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAE135962A0E09B40004AFB4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FAE1359C2A0F22890004AFB4 /* WalktroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalktroughViewController.swift; sourceTree = "<group>"; };
+		FAE135AD2A11E8C20004AFB4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FAE135B12A11EAD30004AFB4 /* IntegralCF-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IntegralCF-Bold.otf"; sourceTree = "<group>"; };
+		FAE135B32A11EC3B0004AFB4 /* IntegralCF-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IntegralCF-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE135A62A114B900004AFB4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +64,7 @@
 		FAE135812A0E082D0004AFB4 /* SELFIT-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				FAE135AF2A11EA4A0004AFB4 /* Resources */,
 				FAE135982A0E0BFE0004AFB4 /* ViewControllers */,
 				FAE135822A0E082D0004AFB4 /* AppDelegate.swift */,
 				FAE135842A0E082D0004AFB4 /* SceneDelegate.swift */,
@@ -67,9 +78,52 @@
 		FAE135982A0E0BFE0004AFB4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAE1359B2A0E58BF0004AFB4 /* HomeControllers */,
+				FAE1359A2A0E58AF0004AFB4 /* LoginControllers */,
+				FAE135992A0E58980004AFB4 /* WalktroughControllers */,
 				FAE135962A0E09B40004AFB4 /* MainViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FAE135992A0E58980004AFB4 /* WalktroughControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE1359C2A0F22890004AFB4 /* WalktroughViewController.swift */,
+			);
+			path = WalktroughControllers;
+			sourceTree = "<group>";
+		};
+		FAE1359A2A0E58AF0004AFB4 /* LoginControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginControllers;
+			sourceTree = "<group>";
+		};
+		FAE1359B2A0E58BF0004AFB4 /* HomeControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE135AD2A11E8C20004AFB4 /* HomeViewController.swift */,
+			);
+			path = HomeControllers;
+			sourceTree = "<group>";
+		};
+		FAE135AF2A11EA4A0004AFB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAE135B02A11EA5A0004AFB4 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FAE135B02A11EA5A0004AFB4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FAE135B32A11EC3B0004AFB4 /* IntegralCF-Regular.otf */,
+				FAE135B12A11EAD30004AFB4 /* IntegralCF-Bold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +142,9 @@
 			dependencies = (
 			);
 			name = "SELFIT-IOS";
+			packageProductDependencies = (
+				FAE135A52A114B900004AFB4 /* SnapKit */,
+			);
 			productName = "SELFIT-IOS";
 			productReference = FAE1357F2A0E082D0004AFB4 /* SELFIT-IOS.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +173,9 @@
 				Base,
 			);
 			mainGroup = FAE135762A0E082D0004AFB4;
+			packageReferences = (
+				FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = FAE135802A0E082D0004AFB4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -131,7 +191,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE1358F2A0E082F0004AFB4 /* LaunchScreen.storyboard in Resources */,
+				FAE135B22A11EAD30004AFB4 /* IntegralCF-Bold.otf in Resources */,
 				FAE1358C2A0E082F0004AFB4 /* Assets.xcassets in Resources */,
+				FAE135B42A11EC3B0004AFB4 /* IntegralCF-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE135AE2A11E8C20004AFB4 /* HomeViewController.swift in Sources */,
+				FAE1359D2A0F22890004AFB4 /* WalktroughViewController.swift in Sources */,
 				FAE135972A0E09B40004AFB4 /* MainViewController.swift in Sources */,
 				FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */,
 				FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */,
@@ -212,7 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -266,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -352,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FAE135A52A114B900004AFB4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FAE135772A0E082D0004AFB4 /* Project object */;
 }
