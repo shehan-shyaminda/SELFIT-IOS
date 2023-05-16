@@ -19,6 +19,8 @@
 		FAE135B42A11EC3B0004AFB4 /* IntegralCF-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAE135B32A11EC3B0004AFB4 /* IntegralCF-Regular.otf */; };
 		FAE135B62A1220310004AFB4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135B52A1220310004AFB4 /* LoginViewController.swift */; };
 		FAE135B82A12203B0004AFB4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135B72A12203B0004AFB4 /* RegisterViewController.swift */; };
+		FAE135BA2A13DE5C0004AFB4 /* HelperUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135B92A13DE5C0004AFB4 /* HelperUtils.swift */; };
+		FAE135BD2A13E1D70004AFB4 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = FAE135BC2A13E1D70004AFB4 /* SkyFloatingLabelTextField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		FAE135B32A11EC3B0004AFB4 /* IntegralCF-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IntegralCF-Regular.otf"; sourceTree = "<group>"; };
 		FAE135B52A1220310004AFB4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAE135B72A12203B0004AFB4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FAE135B92A13DE5C0004AFB4 /* HelperUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE135A62A114B900004AFB4 /* SnapKit in Frameworks */,
+				FAE135BD2A13E1D70004AFB4 /* SkyFloatingLabelTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE135B02A11EA5A0004AFB4 /* Fonts */,
+				FAE135B92A13DE5C0004AFB4 /* HelperUtils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			name = "SELFIT-IOS";
 			packageProductDependencies = (
 				FAE135A52A114B900004AFB4 /* SnapKit */,
+				FAE135BC2A13E1D70004AFB4 /* SkyFloatingLabelTextField */,
 			);
 			productName = "SELFIT-IOS";
 			productReference = FAE1357F2A0E082D0004AFB4 /* SELFIT-IOS.app */;
@@ -181,6 +187,7 @@
 			mainGroup = FAE135762A0E082D0004AFB4;
 			packageReferences = (
 				FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FAE135BB2A13E1D70004AFB4 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
 			);
 			productRefGroup = FAE135802A0E082D0004AFB4 /* Products */;
 			projectDirPath = "";
@@ -215,6 +222,7 @@
 				FAE135B82A12203B0004AFB4 /* RegisterViewController.swift in Sources */,
 				FAE1359D2A0F22890004AFB4 /* WalktroughViewController.swift in Sources */,
 				FAE135972A0E09B40004AFB4 /* MainViewController.swift in Sources */,
+				FAE135BA2A13DE5C0004AFB4 /* HelperUtils.swift in Sources */,
 				FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */,
 				FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */,
 			);
@@ -434,6 +442,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		FAE135BB2A13E1D70004AFB4 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +457,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		FAE135BC2A13E1D70004AFB4 /* SkyFloatingLabelTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAE135BB2A13E1D70004AFB4 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

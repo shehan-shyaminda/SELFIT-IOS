@@ -18,8 +18,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = scene as? UIWindowScene else {return}
         let myWindow = UIWindow(windowScene: scene)
-        let view = UINavigationController(rootViewController: WalktroughViewController())
-        myWindow.rootViewController = view
+        if (UserDefaults.standard.bool(forKey: "isExistingUser")) {
+            if (UserDefaults.standard.bool(forKey: "isLoggedIn")) {
+                myWindow.rootViewController = UINavigationController(rootViewController: MainViewController())
+            } else {
+                myWindow.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            }
+        } else {
+            myWindow.rootViewController = UINavigationController(rootViewController: WalktroughViewController())
+        }
         self.window = myWindow
         myWindow.makeKeyAndVisible()
     }
