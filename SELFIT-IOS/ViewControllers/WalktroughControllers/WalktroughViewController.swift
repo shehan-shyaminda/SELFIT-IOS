@@ -121,22 +121,6 @@ class WalktroughViewController: UIViewController {
             make.height.equalTo(view.snp.height).multipliedBy(0.75)
         }
         
-        
-        selectedIndicator_hint1.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(25)
-            make.height.equalTo(8)
-        }
-        
-        selectedIndicator_hint2.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(25)
-            make.height.equalTo(8)
-        }
-        
-        selectedIndicator_hint3.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(25)
-            make.height.equalTo(8)
-        }
-        
         indicatorStack.snp.makeConstraints{(make) -> Void in
             make.width.equalTo(view.snp.width).multipliedBy(0.50)
             make.height.equalTo(8)
@@ -155,6 +139,7 @@ class WalktroughViewController: UIViewController {
                 self.hintLabel.alpha = 0.5
                 self.selectedHint += 1
             } else {
+                UserDefaults.standard.set(true, forKey: "isExistingUser")
                 self.gotToNext()
             }
         }, completion: { finished in
@@ -183,7 +168,7 @@ class WalktroughViewController: UIViewController {
     }
     
     @objc func gotToNext(){
-        let vc = HomeViewController()
+        let vc = MainViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
