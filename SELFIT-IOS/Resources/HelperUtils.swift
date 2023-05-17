@@ -9,15 +9,11 @@ import Foundation
 import UIKit
 
 func changeRootViewController(controller: UIViewController) {
-    let newRootViewController = controller
-
-    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let keyWindow = windowScene.windows.first else {
         return
     }
-
-    // Set the new root view controller
-    sceneDelegate.window?.rootViewController = newRootViewController
-
-    // Make the window visible
-    sceneDelegate.window?.makeKeyAndVisible()
+    UIView.transition(with: keyWindow, duration: 0.3, options: .transitionCrossDissolve, animations: {
+        keyWindow.rootViewController = controller
+    }, completion: nil)
 }

@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     let hintUIImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(imageLiteralResourceName: "Frame_4")
+        imageView.image = UIImage(imageLiteralResourceName: "Frame_5")
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = UIColor(named: "Primary_Green")
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(UIColor(named: "Primary_Orange"), for: .highlighted)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         return button
     }()
     
@@ -71,17 +71,67 @@ class LoginViewController: UIViewController {
         return containterStack
     }()
     
+    let hintLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome Back"
+        label.font = UIFont.init(name: "IntegralCF-Bold", size: 24)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "SIGN IN"
+        label.font = UIFont.init(name: "IntegralCF-Regular", size: 20)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
+    
+    let titleUIStack: UIStackView = {
+        let containterStack = UIStackView()
+        containterStack.axis = .vertical
+        containterStack.distribution = .fill
+        containterStack.alignment = .leading
+        containterStack.spacing = 10
+        return containterStack
+    }()
+    
+    let newUserUILabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .white
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hintUIImage.addSubview(loginNavUIView)
+        titleUIStack.addArrangedSubview(hintLabel)
+        titleUIStack.addArrangedSubview(titleLabel)
+        hintUIImage.addSubview(titleUIStack)
         containerStackView.addArrangedSubview(hintUIImage)
         containerStackView.addArrangedSubview(inputUsername)
         containerStackView.addArrangedSubview(inputPassword)
+        containerStackView.addArrangedSubview(newUserUILabel)
         containerStackView.addArrangedSubview(nextButton)
         containerUIView.addSubview(containerStackView)
         view.addSubview(containerUIView)
         
+        setupSnaps()
+        
+        let newUserTxt = "Don't have an account? Sign up"
+        let attributedString = NSMutableAttributedString(string: newUserTxt)
+        let range = (newUserTxt as NSString).range(of: "Sign up")
+        attributedString.addAttribute(.foregroundColor, value: UIColor(named: "Primary_Green")!, range: range)
+        newUserUILabel.attributedText = attributedString
+    }
+    
+    func setupSnaps() {
         inputUsername.snp.makeConstraints { make in
             make.height.equalTo(45)
             make.leading.equalToSuperview().inset(25)
@@ -94,27 +144,32 @@ class LoginViewController: UIViewController {
             make.trailing.equalToSuperview().inset(25)
         }
         
-        nextButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.leading.equalToSuperview().inset(30)
+        hintUIImage.snp.makeConstraints{(make) -> Void in
+            make.leading.trailing.top.equalToSuperview()
         }
         
-        hintUIImage.snp.makeConstraints{(make) -> Void in
-            make.width.equalToSuperview()
+        nextButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leading.width.equalToSuperview().inset(30)
         }
         
         containerStackView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-60)
+            make.bottom.equalToSuperview().inset(60)
         }
         
         containerUIView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        loginNavUIView.snp.makeConstraints{ make in
-            make.top.equalTo(60)
-            make.leading.equalTo(50)
+        titleUIStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(40)
+        }
+        
+        newUserUILabel.snp.makeConstraints{ make in
+            make.height.equalTo(20)
+            make.leading.equalToSuperview().inset(25)
         }
     }
 }
