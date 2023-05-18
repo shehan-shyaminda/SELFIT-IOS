@@ -8,8 +8,10 @@
 import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
+import Combine
 
 class LoginViewController: UIViewController {
+    let networkManager = NetworkManager()
     
     let containerUIView: UIView = {
         let containterStack = UIView()
@@ -29,7 +31,7 @@ class LoginViewController: UIViewController {
     let hintUIImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(imageLiteralResourceName: "Frame_5")
+        imageView.image = UIImage(imageLiteralResourceName: "Frame_6")
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -61,20 +63,10 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    let loginNavUIView: UILabel = {
-        let containterStack = UILabel()
-        containterStack.textAlignment = .center
-        containterStack.text = "SIGN IN"
-        containterStack.textColor = .white
-        containterStack.layer.borderWidth = 1
-        containterStack.layer.borderColor = UIColor(named: "Primary_Green")?.cgColor
-        return containterStack
-    }()
-    
     let hintLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome Back"
-        label.font = UIFont.init(name: "IntegralCF-Bold", size: 24)
+        label.font = UIFont.init(name: "IntegralCF-Bold", size: 32)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
@@ -84,7 +76,7 @@ class LoginViewController: UIViewController {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "SIGN IN"
-        label.font = UIFont.init(name: "IntegralCF-Regular", size: 20)
+        label.font = UIFont.init(name: "IntegralCF-Regular", size: 26)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
@@ -129,6 +121,13 @@ class LoginViewController: UIViewController {
         let range = (newUserTxt as NSString).range(of: "Sign up")
         attributedString.addAttribute(.foregroundColor, value: UIColor(named: "Primary_Green")!, range: range)
         newUserUILabel.attributedText = attributedString
+        
+        newUserUILabel.isUserInteractionEnabled = true
+        let tapNavLog = UITapGestureRecognizer(target: self, action: #selector(navLogTapped(_:)))
+        newUserUILabel.addGestureRecognizer(tapNavLog)
+        
+        nextButton.isPointerInteractionEnabled = true
+        nextButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
     }
     
     func setupSnaps() {
@@ -172,4 +171,64 @@ class LoginViewController: UIViewController {
             make.leading.equalToSuperview().inset(25)
         }
     }
+    
+    @objc func navLogTapped(_ gesture: UITapGestureRecognizer) {
+        navigateToViewController(RegisterViewController(), from: self.navigationController)
+    }
+    
+    @objc func loginTapped() {
+        AlertUtils.startAnimate(in: self, animationType: .ballTrianglePath)
+        let username = inputUsername.text ?? ""
+        let password = inputPassword.text ?? ""
+//        let data = [
+//            "username": username,
+//            "password": password
+//        ]
+        let data = ReqLoginModel(username: username, password: password)
+        guard let jsonData = try? JSONEncoder().encode(data) else {
+            print("Failed to encode JSON data")
+            return
+        }
+        networkManager.performNetworkCall(NetworkManager.login_URL, httpMethod: .post, httpBody: jsonData) { [self] (result: Result<ResLoginModel, Error>) in
+            switch result {
+            case .success(let res):
+                if res.status {
+                    UserDefaults.standard.set(res.data?.userId, forKey: "userId")
+                    UserDefaults.standard.set(res.data?.access_token, forKey: "accessToken")
+                    DispatchQueue.main.async {
+                        AlertUtils.dismissAnimate()
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        changeRootViewController(MainViewController())
+                    }
+                } else {
+                    print(res.message!)
+                    DispatchQueue.main.async {
+                        AlertUtils.dismissAnimate()
+                        let snackbar = SnackbarView(title: "Oops! Please check yout credentials.", duration: 3.0)
+                        snackbar.show(from: self.view)
+                    }
+                }
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    AlertUtils.dismissAnimate()
+                }
+            }
+        }
+    }
+}
+
+struct ResLoginModel: Decodable {
+    let status: Bool
+    let data: LoginData?
+    let message: String?
+}
+
+struct LoginData: Decodable {
+    let userId, access_token: String
+}
+
+struct ReqLoginModel: Codable {
+    let username: String
+    let password: String
 }

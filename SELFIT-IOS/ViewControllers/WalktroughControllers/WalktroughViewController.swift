@@ -169,7 +169,7 @@ class WalktroughViewController: UIViewController {
     
     @objc func gotToNext(){
         let vc = LoginViewController()
-        changeRootViewController(controller: vc)
+        changeRootViewController(vc)
     }
     
     func changeUIImageHint(){

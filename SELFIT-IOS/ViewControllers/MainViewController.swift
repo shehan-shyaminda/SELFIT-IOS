@@ -152,23 +152,17 @@ class MainViewController: UIViewController {
         guard let imageView = sender.view as? UIImageView else {
             return
         }
-        
-        print(imageView.tag)
         switch imageView.tag {
         case 0:
-            print("Home")
             initiateNavigationPanel(tab: .Home)
             changeSelectedTab(tab: .Home)
         case 1:
-            print("Stats")
             initiateNavigationPanel(tab: .Stats)
             changeSelectedTab(tab: .Stats)
         case 2:
-            print("Me")
             initiateNavigationPanel(tab: .Me)
             changeSelectedTab(tab: .Me)
         default:
-            print("Default")
             initiateNavigationPanel(tab: .Home)
             changeSelectedTab(tab: .Home)
         }
