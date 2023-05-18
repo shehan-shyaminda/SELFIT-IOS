@@ -63,14 +63,34 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initiateNavigationPanel(tab: .Home)
+        
+        botmNavUIView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        botmNavUIView.isLayoutMarginsRelativeArrangement = true
+        containerUIView.bringSubviewToFront(botmNavUIView)
+        botmNavUIView.layer.cornerRadius = 15
+        botmNavUIView.layer.shadowColor = UIColor.black.cgColor
+        botmNavUIView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        botmNavUIView.layer.shadowOpacity = 0.4
+        botmNavUIView.layer.shadowRadius = 4
+        
         botmNavUIView.addArrangedSubview(tabHome)
         botmNavUIView.addArrangedSubview(tabStats)
         botmNavUIView.addArrangedSubview(tabMe)
         containerUIView.addSubview(botmNavUIView)
         view.addSubview(containerUIView)
         
-        initiateNavigationPanel(tab: .Home)
+        setupSnaps()
         
+        let tapNavGestureHome = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
+        let tapNavGestureStats = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
+        let tapNavGestureMe = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
+        tabHome.addGestureRecognizer(tapNavGestureHome)
+        tabStats.addGestureRecognizer(tapNavGestureStats)
+        tabMe.addGestureRecognizer(tapNavGestureMe)
+    }
+    
+    func setupSnaps() {
         containerUIView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -96,22 +116,6 @@ class MainViewController: UIViewController {
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
-        
-        botmNavUIView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        botmNavUIView.isLayoutMarginsRelativeArrangement = true
-        containerUIView.bringSubviewToFront(botmNavUIView)
-        botmNavUIView.layer.cornerRadius = 15
-        botmNavUIView.layer.shadowColor = UIColor.black.cgColor
-        botmNavUIView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        botmNavUIView.layer.shadowOpacity = 0.4
-        botmNavUIView.layer.shadowRadius = 4
-        
-        let tapNavGestureHome = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
-        let tapNavGestureStats = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
-        let tapNavGestureMe = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
-        tabHome.addGestureRecognizer(tapNavGestureHome)
-        tabStats.addGestureRecognizer(tapNavGestureStats)
-        tabMe.addGestureRecognizer(tapNavGestureMe)
     }
     
     func initiateNavigationPanel(tab: NavigationTabs){
@@ -148,23 +152,17 @@ class MainViewController: UIViewController {
         guard let imageView = sender.view as? UIImageView else {
             return
         }
-        
-        print(imageView.tag)
         switch imageView.tag {
         case 0:
-            print("Home")
             initiateNavigationPanel(tab: .Home)
             changeSelectedTab(tab: .Home)
         case 1:
-            print("Stats")
             initiateNavigationPanel(tab: .Stats)
             changeSelectedTab(tab: .Stats)
         case 2:
-            print("Me")
             initiateNavigationPanel(tab: .Me)
             changeSelectedTab(tab: .Me)
         default:
-            print("Default")
             initiateNavigationPanel(tab: .Home)
             changeSelectedTab(tab: .Home)
         }

@@ -88,18 +88,7 @@ class WalktroughViewController: UIViewController {
         
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
-        setupView()
         
-        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeftGesture))
-        swipeLeftGesture.direction = .left
-        view.addGestureRecognizer(swipeLeftGesture)
-        
-        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRightGesture))
-        swipeRightGesture.direction = .right
-        view.addGestureRecognizer(swipeRightGesture)
-    }
-    
-    func setupView(){
         self.hintUIImage.image = UIImage(imageLiteralResourceName: self.imageList[0])
         let attributedText = NSMutableAttributedString(string: self.quoteList[0])
         let range = (self.quoteList[0] as NSString?)?.range(of: self.quoteHighlitedList[0]) ?? NSRange(location: 0, length: 0)
@@ -116,7 +105,18 @@ class WalktroughViewController: UIViewController {
         containerVStack.addArrangedSubview(indicatorStack)
         
         view.addSubview(containerVStack)
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeftGesture))
+        swipeLeftGesture.direction = .left
+        view.addGestureRecognizer(swipeLeftGesture)
         
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRightGesture))
+        swipeRightGesture.direction = .right
+        view.addGestureRecognizer(swipeRightGesture)
+        
+        setupSnaps()
+    }
+    
+    func setupSnaps(){
         hintUIImage.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(view.snp.height).multipliedBy(0.75)
         }
@@ -168,8 +168,8 @@ class WalktroughViewController: UIViewController {
     }
     
     @objc func gotToNext(){
-        let vc = MainViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = LoginViewController()
+        changeRootViewController(vc)
     }
     
     func changeUIImageHint(){

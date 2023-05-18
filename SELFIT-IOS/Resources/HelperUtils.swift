@@ -8,16 +8,29 @@
 import Foundation
 import UIKit
 
-func changeRootViewController(controller: UIViewController) {
-    let newRootViewController = controller
-
-    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+func changeRootViewController(_ viewController: UIViewController) {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let keyWindow = windowScene.windows.first else {
         return
     }
+    UIView.transition(with: keyWindow, duration: 0.3, options: .transitionCrossDissolve, animations: {
+        keyWindow.rootViewController = viewController
+    }, completion: nil)
+}
 
-    // Set the new root view controller
-    sceneDelegate.window?.rootViewController = newRootViewController
+func navigateToViewController(_ viewController: UIViewController, from navigationController: UINavigationController?) {
+    navigationController?.pushViewController(viewController, animated: true)
+}
 
-    // Make the window visible
-    sceneDelegate.window?.makeKeyAndVisible()
+func popViewController(_ viewController: UIViewController) {
+    if let navigationController = viewController.navigationController {
+        navigationController.popViewController(animated: true)
+    } else {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+func popToRootViewController(_ navigationController: UINavigationController, completion: (() -> Void)? = nil) {
+    navigationController.popToRootViewController(animated: true)
+    completion?()
 }
