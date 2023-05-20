@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         let containterStack = UIStackView()
         containterStack.axis = .vertical
         containterStack.distribution = .equalSpacing
-        containterStack.alignment = .center
+        containterStack.alignment = .leading
         return containterStack
     }()
     

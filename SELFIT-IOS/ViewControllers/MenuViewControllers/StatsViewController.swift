@@ -7,7 +7,6 @@
 
 import UIKit
 import HealthKit
-import Charts
 
 class StatsViewController: UIViewController {
     let healthStore = HKHealthStore()
@@ -114,22 +113,23 @@ class StatsViewController: UIViewController {
             print("Step count: \(stepCount)")
             
             DispatchQueue.main.async {
-                self.chartView.data = nil
-                var dataEntries: [ChartDataEntry] = []
-                let dataEntry = ChartDataEntry(x: 0, y: stepCount)
-                dataEntries.append(dataEntry)
-                let dataSet = LineChartDataSet(entries: dataEntries, label: "Step Count")
-
-                dataSet.colors = [.blue]
-                dataSet.circleColors = [.blue]
-                dataSet.circleHoleColor = .blue
-                dataSet.lineWidth = 2.0
-                dataSet.drawCircleHoleEnabled = true
-                let data = LineChartData(dataSet: dataSet)
-                self.chartView.data = data
+                self.updateLineChart(with: stepCount)
             }
         }
         
         healthStore.execute(query)
+    }
+    
+    func updateLineChart(with stepCount: Double) {
+        view.addSubview(chartView)
+        chartView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(200)
+        }
+        
+        let stepCountValue = CGFloat(stepCount)
+        self.chartView.dataPoints = [stepCountValue, stepCountValue / 2, stepCountValue * 0.8, stepCountValue * 0.6, stepCountValue * 0.4]
     }
 }

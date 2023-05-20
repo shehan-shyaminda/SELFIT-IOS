@@ -24,7 +24,7 @@
 		FA36C8552A18FC4800F1DFEB /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8542A18FC4800F1DFEB /* StatsViewController.swift */; };
 		FA36C8572A18FC5400F1DFEB /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8562A18FC5400F1DFEB /* MeViewController.swift */; };
 		FA36C85A2A18FDF700F1DFEB /* SetSheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8592A18FDF700F1DFEB /* SetSheduleViewController.swift */; };
-		FA36C8602A1936F700F1DFEB /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = FA36C85F2A1936F700F1DFEB /* Charts */; };
+		FA36C8622A193B1900F1DFEB /* LineChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */; };
 		FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135822A0E082D0004AFB4 /* AppDelegate.swift */; };
 		FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135842A0E082D0004AFB4 /* SceneDelegate.swift */; };
 		FAE1358C2A0E082F0004AFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1358B2A0E082F0004AFB4 /* Assets.xcassets */; };
@@ -58,6 +58,7 @@
 		FA36C8562A18FC5400F1DFEB /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		FA36C8592A18FDF700F1DFEB /* SetSheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSheduleViewController.swift; sourceTree = "<group>"; };
 		FA36C85D2A1926D300F1DFEB /* SELFIT-IOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SELFIT-IOS.entitlements"; sourceTree = "<group>"; };
+		FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartUtils.swift; sourceTree = "<group>"; };
 		FAE1357F2A0E082D0004AFB4 /* SELFIT-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SELFIT-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE135822A0E082D0004AFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE135842A0E082D0004AFB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 				FAE135A62A114B900004AFB4 /* SnapKit in Frameworks */,
 				FAE135BD2A13E1D70004AFB4 /* SkyFloatingLabelTextField in Frameworks */,
 				FA36C8242A15A8AE00F1DFEB /* NVActivityIndicatorView in Frameworks */,
-				FA36C8602A1936F700F1DFEB /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +199,7 @@
 				FA36C81E2A14D48B00F1DFEB /* NetworkUtils.swift */,
 				FA36C8202A157F7600F1DFEB /* AlertUtils.swift */,
 				FA36C82B2A15E20500F1DFEB /* SnakbarUtils.swift */,
+				FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -232,7 +233,6 @@
 				FAE135A52A114B900004AFB4 /* SnapKit */,
 				FAE135BC2A13E1D70004AFB4 /* SkyFloatingLabelTextField */,
 				FA36C8232A15A8AE00F1DFEB /* NVActivityIndicatorView */,
-				FA36C85F2A1936F700F1DFEB /* Charts */,
 			);
 			productName = "SELFIT-IOS";
 			productReference = FAE1357F2A0E082D0004AFB4 /* SELFIT-IOS.app */;
@@ -266,7 +266,6 @@
 				FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				FAE135BB2A13E1D70004AFB4 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
 				FA36C8222A15A8AE00F1DFEB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
-				FA36C85E2A1936F700F1DFEB /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = FAE135802A0E082D0004AFB4 /* Products */;
 			projectDirPath = "";
@@ -316,6 +315,7 @@
 				FA36C8422A16446000F1DFEB /* LoginModel.swift in Sources */,
 				FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */,
 				FA36C8512A18A53700F1DFEB /* HeightViewController.swift in Sources */,
+				FA36C8622A193B1900F1DFEB /* LineChartUtils.swift in Sources */,
 				FA36C8402A161A9B00F1DFEB /* GenderViewController.swift in Sources */,
 				FA36C81F2A14D48B00F1DFEB /* NetworkUtils.swift in Sources */,
 				FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */,
@@ -546,14 +546,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		FA36C85E2A1936F700F1DFEB /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		FAE135A42A114B900004AFB4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -577,11 +569,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FA36C8222A15A8AE00F1DFEB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
-		};
-		FA36C85F2A1936F700F1DFEB /* Charts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA36C85E2A1936F700F1DFEB /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = Charts;
 		};
 		FAE135A52A114B900004AFB4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
