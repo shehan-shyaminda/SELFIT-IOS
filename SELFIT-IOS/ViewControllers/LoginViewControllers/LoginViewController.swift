@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.title = "Email Address"
         textField.placeholder = "Email Address"
+        textField.textColor = .white
         textField.selectedTitleColor = UIColor(named: "Primary_Green")!
         return textField
     }()
@@ -48,6 +49,7 @@ class LoginViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.title = "Password"
         textField.placeholder = "Password"
+        textField.textColor = .white
         textField.isSecureTextEntry = true
         textField.selectedTitleColor = UIColor(named: "Primary_Green")!
         return textField
@@ -58,6 +60,7 @@ class LoginViewController: UIViewController {
         button.setTitle("Login ➤", for: .normal)
         button.backgroundColor = UIColor(named: "Primary_Green")
         button.setTitleColor(.black, for: .normal)
+        button.isUserInteractionEnabled = true
         button.setTitleColor(UIColor(named: "Primary_Orange"), for: .highlighted)
         button.layer.cornerRadius = 25
         return button
@@ -97,8 +100,19 @@ class LoginViewController: UIViewController {
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .white
+        label.isUserInteractionEnabled = true
         return label
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,11 +136,9 @@ class LoginViewController: UIViewController {
         attributedString.addAttribute(.foregroundColor, value: UIColor(named: "Primary_Green")!, range: range)
         newUserUILabel.attributedText = attributedString
         
-        newUserUILabel.isUserInteractionEnabled = true
         let tapNavLog = UITapGestureRecognizer(target: self, action: #selector(navLogTapped(_:)))
         newUserUILabel.addGestureRecognizer(tapNavLog)
         
-        nextButton.isPointerInteractionEnabled = true
         nextButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
     }
     
@@ -176,59 +188,49 @@ class LoginViewController: UIViewController {
         navigateToViewController(RegisterViewController(), from: self.navigationController)
     }
     
-    @objc func loginTapped() {
-        AlertUtils.startAnimate(in: self, animationType: .ballTrianglePath)
-        let username = inputUsername.text ?? ""
-        let password = inputPassword.text ?? ""
-//        let data = [
-//            "username": username,
-//            "password": password
-//        ]
-        let data = ReqLoginModel(username: username, password: password)
-        guard let jsonData = try? JSONEncoder().encode(data) else {
-            print("Failed to encode JSON data")
-            return
+    func checkSelections() -> Bool {
+        if (inputUsername.text!.isEmpty || inputPassword.text!.isEmpty) {
+            return false
         }
-        networkManager.performNetworkCall(NetworkManager.login_URL, httpMethod: .post, httpBody: jsonData) { [self] (result: Result<ResLoginModel, Error>) in
-            switch result {
-            case .success(let res):
-                if res.status {
-                    UserDefaults.standard.set(res.data?.userId, forKey: "userId")
-                    UserDefaults.standard.set(res.data?.access_token, forKey: "accessToken")
+        return true
+    }
+    
+    @objc func loginTapped() {
+        if (checkSelections()) {
+            AlertUtils.startAnimate(in: self, animationType: .ballTrianglePath)
+            let data = ReqLoginModel(username: inputUsername.text!, password: inputPassword.text!)
+            guard let jsonData = try? JSONEncoder().encode(data) else {
+                print("Failed to encode JSON data")
+                return
+            }
+            networkManager.performNetworkCall(NetworkManager.login_URL, httpMethod: .post, httpBody: jsonData) { [self] (result: Result<ResLoginModel, Error>) in
+                switch result {
+                case .success(let res):
+                    if res.status {
+                        UserDefaults.standard.set(res.data?.userId, forKey: "userId")
+                        UserDefaults.standard.set(res.data?.access_token, forKey: "accessToken")
+                        DispatchQueue.main.async {
+                            AlertUtils.dismissAnimate()
+                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                            changeRootViewController(MainViewController())
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            AlertUtils.dismissAnimate()
+                            let snackbar = SnackbarView(title: "Oops! Please check your credentials.", duration: 3.0)
+                            snackbar.show(from: self.view)
+                        }
+                    }
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
                     DispatchQueue.main.async {
                         AlertUtils.dismissAnimate()
-                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                        changeRootViewController(MainViewController())
                     }
-                } else {
-                    print(res.message!)
-                    DispatchQueue.main.async {
-                        AlertUtils.dismissAnimate()
-                        let snackbar = SnackbarView(title: "Oops! Please check yout credentials.", duration: 3.0)
-                        snackbar.show(from: self.view)
-                    }
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    AlertUtils.dismissAnimate()
                 }
             }
+        } else {
+            SnackbarView(title: "Oops! Username and Password cannot be empty.", duration: 3.0)
+                .show(from: self.view)
         }
     }
-}
-
-struct ResLoginModel: Decodable {
-    let status: Bool
-    let data: LoginData?
-    let message: String?
-}
-
-struct LoginData: Decodable {
-    let userId, access_token: String
-}
-
-struct ReqLoginModel: Codable {
-    let username: String
-    let password: String
 }

@@ -11,8 +11,8 @@ import SnapKit
 class MainViewController: UIViewController {
     
     let Home = HomeViewController()
-    let Stats = LoginViewController()
-    let Me = RegisterViewController()
+    let Stats = StatsViewController()
+    let Me = MeViewController()
     
     let containerUIView: UIView = {
         let containterStack = UIView()
@@ -59,6 +59,16 @@ class MainViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +129,7 @@ class MainViewController: UIViewController {
     }
     
     func initiateNavigationPanel(tab: NavigationTabs){
+        removeAllSubviewsExcept(from: containerUIView, except: botmNavUIView)
         changeSelectedTab(tab: .Home)
         switch tab {
         case .Home:
@@ -146,7 +157,6 @@ class MainViewController: UIViewController {
         }
         containerUIView.bringSubviewToFront(botmNavUIView)
     }
-    
     
     @objc func handleNavigationPanel(_ sender: UITapGestureRecognizer) {
         guard let imageView = sender.view as? UIImageView else {

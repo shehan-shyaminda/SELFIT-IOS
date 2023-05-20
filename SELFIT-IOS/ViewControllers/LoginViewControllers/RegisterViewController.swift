@@ -10,6 +10,7 @@ import SnapKit
 import SkyFloatingLabelTextField
 
 class RegisterViewController: UIViewController {
+    let registerDataManager = RegisterDataManager.shared
     
     let containerUIView: UIView = {
         let containterStack = UIView()
@@ -38,6 +39,7 @@ class RegisterViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.title = "Email Address"
         textField.placeholder = "Email Address"
+        textField.textColor = .white
         textField.selectedTitleColor = UIColor(named: "Primary_Green")!
         return textField
     }()
@@ -46,6 +48,7 @@ class RegisterViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.title = "Password"
         textField.placeholder = "Password"
+        textField.textColor = .white
         textField.isSecureTextEntry = true
         textField.selectedTitleColor = UIColor(named: "Primary_Green")!
         return textField
@@ -56,6 +59,7 @@ class RegisterViewController: UIViewController {
         button.setTitle("Next ➤", for: .normal)
         button.backgroundColor = UIColor(named: "Primary_Green")
         button.setTitleColor(.black, for: .normal)
+        button.isUserInteractionEnabled = true
         button.setTitleColor(UIColor(named: "Primary_Orange"), for: .highlighted)
         button.layer.cornerRadius = 25
         return button
@@ -94,15 +98,19 @@ class RegisterViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 14)
+        label.isUserInteractionEnabled = true
         label.textColor = .white
         return label
     }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     override func viewDidLoad() {
@@ -127,9 +135,10 @@ class RegisterViewController: UIViewController {
         attributedString.addAttribute(.foregroundColor, value: UIColor(named: "Primary_Green")!, range: range)
         existingUserUILabel.attributedText = attributedString
         
-        existingUserUILabel.isUserInteractionEnabled = true
         let tapNavLog = UITapGestureRecognizer(target: self, action: #selector(navLogTapped(_:)))
         existingUserUILabel.addGestureRecognizer(tapNavLog)
+        
+        nextButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
     }
     
     func setupSnaps() {
@@ -176,5 +185,24 @@ class RegisterViewController: UIViewController {
     
     @objc func navLogTapped(_ gesture: UITapGestureRecognizer) {
         popViewController(self)
+    }
+    
+    @objc func loginTapped() {
+        if (checkSelections()) {
+            registerDataManager.registerModel.username = inputUsername.text!
+            registerDataManager.registerModel.password = inputPassword.text!
+            print(registerDataManager.registerModel)
+            navigateToViewController(GenderViewController(), from: self.navigationController)
+        } else {
+            SnackbarView(title: "Oops! Username and Password cannot be empty.", duration: 3.0)
+                .show(from: self.view)
+        }
+    }
+    
+    func checkSelections() -> Bool {
+        if (inputUsername.text!.isEmpty || inputPassword.text!.isEmpty) {
+            return false
+        }
+        return true
     }
 }
