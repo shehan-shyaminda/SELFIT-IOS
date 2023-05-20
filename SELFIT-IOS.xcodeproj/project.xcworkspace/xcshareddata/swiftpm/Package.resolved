@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielgindi/Charts.git",
+      "state" : {
+        "revision" : "66546404a6739173b8e436ab6bc1f2897cd08594",
+        "version" : "3.6.0"
+      }
+    },
+    {
       "identity" : "nvactivityindicatorview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ninjaprox/NVActivityIndicatorView.git",
@@ -16,15 +25,6 @@
       "state" : {
         "revision" : "a0750ebbc7311f3b3debf99c5e59338e854afa59",
         "version" : "4.0.0"
-      }
-    },
-    {
-      "identity" : "snackbar.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ahmedAlmasri/SnackBar.swift",
-      "state" : {
-        "revision" : "9efa0f9d2a6ae35384a878a0d74dbafd5001a672",
-        "version" : "0.1.2"
       }
     },
     {
