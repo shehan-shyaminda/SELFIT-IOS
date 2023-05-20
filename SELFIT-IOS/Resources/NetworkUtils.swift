@@ -9,8 +9,22 @@ import Foundation
 import UIKit
 
 class NetworkManager {
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
+        case delete = "DELETE"
+    }
+    
+    enum NetworkError: Error {
+        case responseError
+        case serverError(_ statusCode: Int)
+        case decodingError
+        case badRequestError(_ message: String)
+    }
+    
     private static var BaseURL: String {
-//        return "https://ios-assignment.onrender.com"
+        //        return "https://ios-assignment.onrender.com"
         return "http://localhost:3000"
     }
     
@@ -46,7 +60,7 @@ class NetworkManager {
                 completion(.failure(NSError(domain: "Invalid response", code: 0, userInfo: nil)))
                 return
             }
-
+            
             print(httpResponse.statusCode)
             
             guard let res = try? JSONDecoder().decode(T.self, from: data) else {
@@ -63,19 +77,5 @@ class NetworkManager {
         }
         
         task.resume()
-    }
-    
-    enum HTTPMethod: String {
-        case get = "GET"
-        case post = "POST"
-        case put = "PUT"
-        case delete = "DELETE"
-    }
-    
-    enum NetworkError: Error {
-        case responseError
-        case serverError(_ statusCode: Int)
-        case decodingError
-        case badRequestError(_ message: String)
     }
 }

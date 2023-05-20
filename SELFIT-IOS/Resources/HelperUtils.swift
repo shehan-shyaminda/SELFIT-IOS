@@ -34,3 +34,11 @@ func popToRootViewController(_ navigationController: UINavigationController, com
     navigationController.popToRootViewController(animated: true)
     completion?()
 }
+
+func removeAllSubviewsExcept(from view: UIView, except exceptView: UIView) {
+    for subview in view.subviews {
+        if subview != exceptView {
+            subview.removeFromSuperview()
+        }
+    }
+}
