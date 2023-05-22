@@ -30,18 +30,30 @@ class NetworkManager {
     
     static let login_URL: String = "/user/login"
     static let register_url: String = "/user/create"
+    static let getSchedule_url: String = "/schedules"
+    static let getExercise_url: String = "/exercises"
+    static let getExerciseList_url: String = "/exerciseList"
     
-    func performNetworkCall<T: Decodable>(_ endpoint: String, httpMethod: HTTPMethod, headers: [String: String]? = nil, httpBody: Data? = nil, completion: @escaping (Result<T, Error>) -> Void) {
-        guard let url = URL(string: NetworkManager.BaseURL + endpoint) else {
+    func performNetworkCall<T: Decodable>(_ endpoint: String, httpMethod: HTTPMethod, headers: [String: String]? = nil, httpBody: Data? = nil, parameters: ReqExercise? = nil, completion: @escaping (Result<T, Error>) -> Void) {
+        guard var url = URL(string: NetworkManager.BaseURL + endpoint) else {
             print("Invalid URL")
             return
         }
         
+        if let parameters = parameters {
+            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+            urlComponents.queryItems = parameters.asDictionary.map { URLQueryItem(name: $0.key, value: $0.value) }
+            url = urlComponents.url!
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
-        request.httpBody = httpBody
         request.setValue("application/json", forHTTPHeaderField:"Accept")
         request.setValue("application/json", forHTTPHeaderField:"Content-Type")
+        
+        if let httpBody = httpBody {
+            request.httpBody = httpBody
+        }
         
         if let headers = headers {
             for (key, value) in headers {
@@ -70,7 +82,7 @@ class NetworkManager {
             
             let result = try? JSONSerialization.jsonObject(with: data, options: [])
             if let result = result as? [String: Any] {
-                print(result)
+//                print(result)
             }
             
             completion(.success(res))

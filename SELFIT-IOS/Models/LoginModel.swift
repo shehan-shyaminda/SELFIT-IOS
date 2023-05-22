@@ -20,5 +20,39 @@ struct ResLoginModel: Decodable {
 }
 
 struct LoginData: Decodable {
-    let userId, access_token: String
+    let user: UserDetails
+    let accessToken: String
+    
+    enum CodingKeys: String, CodingKey {
+        case user
+        case accessToken = "access_token"
+    }
+}
+
+struct UserDetails: Decodable {
+    let id: String
+    let userId: String
+    let username: String
+    let password: String
+    let userType: Int
+    let userExerciseType: Int
+    let userWeight: Int
+    let userHeight: Int
+    let userGender: Int
+    let createdAt: String
+    let version: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case userId
+        case username
+        case password
+        case userType
+        case userExerciseType
+        case userWeight
+        case userHeight
+        case userGender
+        case createdAt
+        case version = "__v"
+    }
 }

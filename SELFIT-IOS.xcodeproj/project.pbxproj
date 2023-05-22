@@ -23,8 +23,14 @@
 		FA36C8532A18A54100F1DFEB /* ExerciseTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8522A18A54100F1DFEB /* ExerciseTypeViewController.swift */; };
 		FA36C8552A18FC4800F1DFEB /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8542A18FC4800F1DFEB /* StatsViewController.swift */; };
 		FA36C8572A18FC5400F1DFEB /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8562A18FC5400F1DFEB /* MeViewController.swift */; };
-		FA36C85A2A18FDF700F1DFEB /* SetSheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8592A18FDF700F1DFEB /* SetSheduleViewController.swift */; };
 		FA36C8622A193B1900F1DFEB /* LineChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */; };
+		FA36C8642A1A76D000F1DFEB /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8632A1A76D000F1DFEB /* ScheduleModel.swift */; };
+		FA36C8662A1A9C2E00F1DFEB /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8652A1A9C2E00F1DFEB /* HomeTableViewCell.swift */; };
+		FA36C86D2A1AB8EA00F1DFEB /* ImageLoadUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C86C2A1AB8EA00F1DFEB /* ImageLoadUtils.swift */; };
+		FA36C86F2A1ABC5300F1DFEB /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C86E2A1ABC5300F1DFEB /* ScheduleDetailViewController.swift */; };
+		FA36C8712A1AC09900F1DFEB /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8702A1AC09900F1DFEB /* ExerciseTableViewCell.swift */; };
+		FA36C8732A1AC70400F1DFEB /* ExercisesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C8722A1AC70400F1DFEB /* ExercisesModel.swift */; };
+		FA36C87F2A1B88A200F1DFEB /* ScheduleExercisesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36C87E2A1B88A200F1DFEB /* ScheduleExercisesModel.swift */; };
 		FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135822A0E082D0004AFB4 /* AppDelegate.swift */; };
 		FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE135842A0E082D0004AFB4 /* SceneDelegate.swift */; };
 		FAE1358C2A0E082F0004AFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1358B2A0E082F0004AFB4 /* Assets.xcassets */; };
@@ -56,9 +62,15 @@
 		FA36C8522A18A54100F1DFEB /* ExerciseTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypeViewController.swift; sourceTree = "<group>"; };
 		FA36C8542A18FC4800F1DFEB /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		FA36C8562A18FC5400F1DFEB /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		FA36C8592A18FDF700F1DFEB /* SetSheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSheduleViewController.swift; sourceTree = "<group>"; };
 		FA36C85D2A1926D300F1DFEB /* SELFIT-IOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SELFIT-IOS.entitlements"; sourceTree = "<group>"; };
 		FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartUtils.swift; sourceTree = "<group>"; };
+		FA36C8632A1A76D000F1DFEB /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		FA36C8652A1A9C2E00F1DFEB /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		FA36C86C2A1AB8EA00F1DFEB /* ImageLoadUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadUtils.swift; sourceTree = "<group>"; };
+		FA36C86E2A1ABC5300F1DFEB /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
+		FA36C8702A1AC09900F1DFEB /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		FA36C8722A1AC70400F1DFEB /* ExercisesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesModel.swift; sourceTree = "<group>"; };
+		FA36C87E2A1B88A200F1DFEB /* ScheduleExercisesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleExercisesModel.swift; sourceTree = "<group>"; };
 		FAE1357F2A0E082D0004AFB4 /* SELFIT-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SELFIT-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE135822A0E082D0004AFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE135842A0E082D0004AFB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +105,9 @@
 			children = (
 				FA36C8412A16446000F1DFEB /* LoginModel.swift */,
 				FA36C8432A16446D00F1DFEB /* RegisterModel.swift */,
+				FA36C8632A1A76D000F1DFEB /* ScheduleModel.swift */,
+				FA36C8722A1AC70400F1DFEB /* ExercisesModel.swift */,
+				FA36C87E2A1B88A200F1DFEB /* ScheduleExercisesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,9 +123,18 @@
 		FA36C8582A18FD6A00F1DFEB /* SubViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA36C8592A18FDF700F1DFEB /* SetSheduleViewController.swift */,
+				FA36C86E2A1ABC5300F1DFEB /* ScheduleDetailViewController.swift */,
 			);
 			path = SubViewControllers;
+			sourceTree = "<group>";
+		};
+		FA36C8672A1A9C3700F1DFEB /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				FA36C8652A1A9C2E00F1DFEB /* HomeTableViewCell.swift */,
+				FA36C8702A1AC09900F1DFEB /* ExerciseTableViewCell.swift */,
+			);
+			path = TableCells;
 			sourceTree = "<group>";
 		};
 		FAE135762A0E082D0004AFB4 = {
@@ -193,6 +217,7 @@
 		FAE135AF2A11EA4A0004AFB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA36C8672A1A9C3700F1DFEB /* TableCells */,
 				FA36C84B2A18683400F1DFEB /* DataManagers */,
 				FAE135B02A11EA5A0004AFB4 /* Fonts */,
 				FAE135B92A13DE5C0004AFB4 /* HelperUtils.swift */,
@@ -200,6 +225,7 @@
 				FA36C8202A157F7600F1DFEB /* AlertUtils.swift */,
 				FA36C82B2A15E20500F1DFEB /* SnakbarUtils.swift */,
 				FA36C8612A193B1900F1DFEB /* LineChartUtils.swift */,
+				FA36C86C2A1AB8EA00F1DFEB /* ImageLoadUtils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -301,6 +327,7 @@
 				FA36C8482A16A7E100F1DFEB /* AgeViewController.swift in Sources */,
 				FA36C8552A18FC4800F1DFEB /* StatsViewController.swift in Sources */,
 				FAE135B62A1220310004AFB4 /* LoginViewController.swift in Sources */,
+				FA36C8732A1AC70400F1DFEB /* ExercisesModel.swift in Sources */,
 				FA36C82C2A15E20500F1DFEB /* SnakbarUtils.swift in Sources */,
 				FA36C84D2A18684800F1DFEB /* RegisterDataManager.swift in Sources */,
 				FAE135AE2A11E8C20004AFB4 /* HomeViewController.swift in Sources */,
@@ -308,16 +335,21 @@
 				FA36C84A2A18634800F1DFEB /* UserTypeViewController.swift in Sources */,
 				FAE135972A0E09B40004AFB4 /* MainViewController.swift in Sources */,
 				FA36C8572A18FC5400F1DFEB /* MeViewController.swift in Sources */,
+				FA36C8662A1A9C2E00F1DFEB /* HomeTableViewCell.swift in Sources */,
 				FAE135BA2A13DE5C0004AFB4 /* HelperUtils.swift in Sources */,
-				FA36C85A2A18FDF700F1DFEB /* SetSheduleViewController.swift in Sources */,
 				FA36C8532A18A54100F1DFEB /* ExerciseTypeViewController.swift in Sources */,
 				FA36C8442A16446D00F1DFEB /* RegisterModel.swift in Sources */,
+				FA36C8712A1AC09900F1DFEB /* ExerciseTableViewCell.swift in Sources */,
+				FA36C8642A1A76D000F1DFEB /* ScheduleModel.swift in Sources */,
+				FA36C86D2A1AB8EA00F1DFEB /* ImageLoadUtils.swift in Sources */,
+				FA36C86F2A1ABC5300F1DFEB /* ScheduleDetailViewController.swift in Sources */,
 				FA36C8422A16446000F1DFEB /* LoginModel.swift in Sources */,
 				FAE135832A0E082D0004AFB4 /* AppDelegate.swift in Sources */,
 				FA36C8512A18A53700F1DFEB /* HeightViewController.swift in Sources */,
 				FA36C8622A193B1900F1DFEB /* LineChartUtils.swift in Sources */,
 				FA36C8402A161A9B00F1DFEB /* GenderViewController.swift in Sources */,
 				FA36C81F2A14D48B00F1DFEB /* NetworkUtils.swift in Sources */,
+				FA36C87F2A1B88A200F1DFEB /* ScheduleExercisesModel.swift in Sources */,
 				FAE135852A0E082D0004AFB4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
