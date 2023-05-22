@@ -45,11 +45,11 @@ func removeAllSubviewsExcept(from view: UIView, except exceptView: UIView) {
 
 func getUserType(_ type: Int) -> String {
     switch type {
-    case 1:
+    case 0:
         return "Beginner"
-    case 2:
+    case 1:
         return "Intermidiate"
-    case 3:
+    case 2:
         return "Expert"
     default:
         return "Beginner"
@@ -58,11 +58,11 @@ func getUserType(_ type: Int) -> String {
 
 func getExercisesType(_ type: Int) -> String {
     switch type {
-    case 1:
+    case 0:
         return "Cardio"
-    case 2:
+    case 1:
         return "Weight Gaining"
-    case 3:
+    case 2:
         return "Weight Loosing"
     default:
         return "Cardio"
@@ -71,9 +71,9 @@ func getExercisesType(_ type: Int) -> String {
 
 func getGender(_ type: Int) -> String {
     switch type {
-    case 1:
+    case 0:
         return "Male"
-    case 2:
+    case 1:
         return "Female"
     default:
         return "Male"
@@ -82,17 +82,17 @@ func getGender(_ type: Int) -> String {
 
 func getFocusedArea(_ type: String) -> String {
     switch type {
-    case "1":
+    case "0":
         return "Chest"
-    case "2":
+    case "1":
         return "Back"
-    case "3":
+    case "2":
         return "Arms"
-    case "4":
+    case "3":
         return "Abdominal"
-    case "5":
+    case "4":
         return "Legs"
-    case "6":
+    case "5":
         return "Shoulders"
     default:
         return "Chest"

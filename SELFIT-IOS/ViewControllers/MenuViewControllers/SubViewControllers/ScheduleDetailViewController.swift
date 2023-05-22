@@ -11,6 +11,7 @@ class ScheduleDetailViewController: UIViewController {
     let networkManager = NetworkManager()
     let schedule: Schedules
     var exercisesList: [Exercise] = []
+    var scheduleName: String
     
     let containerUIView: UIView = {
         let containterStack = UIView()
@@ -30,7 +31,7 @@ class ScheduleDetailViewController: UIViewController {
     let hintUIImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(imageLiteralResourceName: "Frame_7")
+        imageView.image = UIImage(imageLiteralResourceName: "Frame_5")
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -61,8 +62,9 @@ class ScheduleDetailViewController: UIViewController {
         return label
     }()
     
-    required init(Schedules: Schedules) {
-        self.schedule = Schedules
+    required init(schedules: Schedules, scheduleName: String) {
+        self.schedule = schedules
+        self.scheduleName = scheduleName
         super.init(nibName: nil, bundle: nil)                                        
     }
     
@@ -77,6 +79,8 @@ class ScheduleDetailViewController: UIViewController {
         exerciseTable.dataSource = self
         exerciseTable.delegate = self
         exerciseTable.register(ExerciseTableViewCell.self, forCellReuseIdentifier: "ExerciseTableViewCell")
+        
+        exerciseNameLabel.text = scheduleName
         
         titleUIStack.addArrangedSubview(exerciseNameLabel)
         hintUIImage.addSubview(titleUIStack)

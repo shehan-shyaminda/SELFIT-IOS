@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
                         DispatchQueue.main.async {
                             AlertUtils.dismissAnimate()
                             UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                            changeRootViewController(MainViewController())
+                            navigateToViewController(MainViewController(), from: self.navigationController)
                         }
                     } else {
                         DispatchQueue.main.async {

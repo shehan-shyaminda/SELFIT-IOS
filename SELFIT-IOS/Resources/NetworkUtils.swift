@@ -24,8 +24,8 @@ class NetworkManager {
     }
     
     private static var BaseURL: String {
-        //        return "https://ios-assignment.onrender.com"
-        return "http://localhost:3000"
+        return "https://ios-assignment.onrender.com"
+//        return "http://localhost:3000"
     }
     
     static let login_URL: String = "/user/login"

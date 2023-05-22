@@ -189,7 +189,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ScheduleDetailViewController(Schedules: schedules[indexPath.row])
+        let vc = ScheduleDetailViewController(schedules: schedules[indexPath.row], scheduleName: schedules[indexPath.row].scheduleName)
         navigateToViewController(vc, from: self.navigationController)
     }
 }
