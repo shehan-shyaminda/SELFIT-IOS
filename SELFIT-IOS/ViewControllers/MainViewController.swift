@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     
     let Home = HomeViewController()
     let Stats = StatsViewController()
-    let Me = MeViewController()
+//    let Me = MeViewController()
     
     let containerUIView: UIView = {
         let containterStack = UIView()
@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
         let containterStack = UIStackView()
         containterStack.backgroundColor = .gray
         containterStack.axis = .horizontal
-        containterStack.distribution = .equalCentering
+        containterStack.distribution = .equalSpacing
         containterStack.spacing = 10
         containterStack.alignment = .center
         return containterStack
@@ -60,7 +60,6 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -86,7 +85,7 @@ class MainViewController: UIViewController {
         
         botmNavUIView.addArrangedSubview(tabHome)
         botmNavUIView.addArrangedSubview(tabStats)
-        botmNavUIView.addArrangedSubview(tabMe)
+//        botmNavUIView.addArrangedSubview(tabMe)
         containerUIView.addSubview(botmNavUIView)
         view.addSubview(containerUIView)
         
@@ -94,10 +93,10 @@ class MainViewController: UIViewController {
         
         let tapNavGestureHome = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
         let tapNavGestureStats = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
-        let tapNavGestureMe = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
+//        let tapNavGestureMe = UITapGestureRecognizer(target: self, action: #selector(handleNavigationPanel(_:)))
         tabHome.addGestureRecognizer(tapNavGestureHome)
         tabStats.addGestureRecognizer(tapNavGestureStats)
-        tabMe.addGestureRecognizer(tapNavGestureMe)
+//        tabMe.addGestureRecognizer(tapNavGestureMe)
     }
     
     func setupSnaps() {
@@ -106,8 +105,7 @@ class MainViewController: UIViewController {
         }
         
         botmNavUIView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-30)
-            make.leading.equalToSuperview().offset(30)
+            make.trailing.leading.equalToSuperview().inset(40)
             make.bottom.equalToSuperview().offset(-40)
             make.height.equalTo(60)
         }
@@ -122,10 +120,10 @@ class MainViewController: UIViewController {
             make.height.equalTo(30)
         }
         
-        tabMe.snp.makeConstraints{ make in
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-        }
+//        tabMe.snp.makeConstraints{ make in
+//            make.width.equalTo(30)
+//            make.height.equalTo(30)
+//        }
     }
     
     func initiateNavigationPanel(tab: NavigationTabs){
@@ -137,23 +135,29 @@ class MainViewController: UIViewController {
             addChild(Home)
             Home.didMove(toParent: self)
             Home.view.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.top.equalToSuperview().inset(50)
+                make.leading.trailing.equalToSuperview().inset(15)
+                make.bottom.equalToSuperview().inset(125)
             }
         case .Stats:
             containerUIView.addSubview(Stats.view)
             addChild(Stats)
             Stats.didMove(toParent: self)
             Stats.view.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.top.equalToSuperview().inset(50)
+                make.leading.trailing.equalToSuperview().inset(15)
+                make.bottom.equalToSuperview().inset(125)
             }
             
-        case .Me:
-            containerUIView.addSubview(Me.view)
-            addChild(Me)
-            Me.didMove(toParent: self)
-            Me.view.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+//        case .Me:
+//            containerUIView.addSubview(Me.view)
+//            addChild(Me)
+//            Me.didMove(toParent: self)
+//            Me.view.snp.makeConstraints { make in
+//                make.top.equalToSuperview().inset(50)
+//                make.leading.trailing.equalToSuperview().inset(15)
+//                make.bottom.equalToSuperview().inset(125)
+//            }
         }
         containerUIView.bringSubviewToFront(botmNavUIView)
     }
@@ -169,9 +173,9 @@ class MainViewController: UIViewController {
         case 1:
             initiateNavigationPanel(tab: .Stats)
             changeSelectedTab(tab: .Stats)
-        case 2:
-            initiateNavigationPanel(tab: .Me)
-            changeSelectedTab(tab: .Me)
+//        case 2:
+//            initiateNavigationPanel(tab: .Me)
+//            changeSelectedTab(tab: .Me)
         default:
             initiateNavigationPanel(tab: .Home)
             changeSelectedTab(tab: .Home)
@@ -187,12 +191,13 @@ class MainViewController: UIViewController {
             tabHome.image = UIImage(named: "Home_selected")
         case .Stats:
             tabStats.image = UIImage(named: "Stats_selected")
-        case .Me:
-            tabMe.image = UIImage(named: "Me_selected")
+//        case .Me:
+//            tabMe.image = UIImage(named: "Me_selected")
         }
     }
 }
 
 enum NavigationTabs {
-    case Home, Stats, Me
+    case Home, Stats
+//         Me
 }

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SnapKit
 import NVActivityIndicatorView
-import SnackBar
 
 class AlertUtils {
     private static var overlayView: UIView?

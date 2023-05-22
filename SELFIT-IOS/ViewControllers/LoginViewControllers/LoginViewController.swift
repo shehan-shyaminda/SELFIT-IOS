@@ -207,12 +207,18 @@ class LoginViewController: UIViewController {
                 switch result {
                 case .success(let res):
                     if res.status {
-                        UserDefaults.standard.set(res.data?.userId, forKey: "userId")
-                        UserDefaults.standard.set(res.data?.access_token, forKey: "accessToken")
+                        UserDefaults.standard.set(res.data?.user.userId, forKey: "userId")
+                        UserDefaults.standard.set(res.data?.user.username, forKey: "username")
+                        UserDefaults.standard.set(res.data?.user.userType, forKey: "userType")
+                        UserDefaults.standard.set(res.data?.user.userExerciseType, forKey: "userExerciseType")
+                        UserDefaults.standard.set(res.data?.user.userWeight, forKey: "userWeight")
+                        UserDefaults.standard.set(res.data?.user.userHeight, forKey: "userHeight")
+                        UserDefaults.standard.set(res.data?.user.userGender, forKey: "userGender")
+                        UserDefaults.standard.set(res.data?.accessToken, forKey: "accessToken")
                         DispatchQueue.main.async {
                             AlertUtils.dismissAnimate()
                             UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                            changeRootViewController(MainViewController())
+                            navigateToViewController(MainViewController(), from: self.navigationController)
                         }
                     } else {
                         DispatchQueue.main.async {
