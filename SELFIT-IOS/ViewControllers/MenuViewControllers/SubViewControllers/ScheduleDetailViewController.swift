@@ -120,6 +120,7 @@ class ScheduleDetailViewController: UIViewController {
     
     func getData() {
         self.exercisesList.removeAll()
+        AlertUtils.startAnimate(in: self, animationType: .ballTrianglePath)
         let data = ReqScheduleExercises(scheduleList: schedule.scheduleList)
         guard let jsonData = try? JSONEncoder().encode(data) else {
             print("Failed to encode JSON data")
@@ -131,15 +132,24 @@ class ScheduleDetailViewController: UIViewController {
                 if res.status {
                     DispatchQueue.main.async {
                         if res.status {
-                            self.exercisesList.append(contentsOf: res.data)
-                            self.exerciseTable.reloadData()
+                            DispatchQueue.main.async {
+                                AlertUtils.dismissAnimate()
+                                self.exercisesList.append(contentsOf: res.data)
+                                self.exerciseTable.reloadData()
+                            }
                         }
                     }
                 } else {
                     print("Oops! Something went wrong.")
+                    DispatchQueue.main.async {
+                        AlertUtils.dismissAnimate()
+                    }
                 }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    AlertUtils.dismissAnimate()
+                }
             }
         }
     }
